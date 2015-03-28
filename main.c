@@ -98,6 +98,24 @@ char receive_byte()
 
 	return msg.ch;
 }
+void task_1(void *pvParameters)
+{
+	while(1);
+		
+	
+		
+	
+	
+}
+
+void task_2(void *pvParameters)
+{
+	while(1);
+		
+		
+		
+	
+}
 
 void led_flash_task(void *pvParameters)
 {
@@ -225,6 +243,7 @@ int main()
 	            (signed portCHAR *) "LED Flash",
 	            512 /* stack size */, NULL,
 	            tskIDLE_PRIORITY + 5, NULL);
+	
 
 	/* Create tasks to queue a string to be written to the RS232 port. */
 	xTaskCreate(queue_str_task1,
@@ -247,6 +266,14 @@ int main()
 	            (signed portCHAR *) "Serial Read/Write",
 	            512 /* stack size */, NULL,
 	            tskIDLE_PRIORITY + 10, NULL);
+	/* Create a task1 */
+	xTaskCreate(task_1,
+		    (signed portCHAR *) "Task 1 ",
+		    512/* stack size */,NULL,tskIDLE_PRIORITY + 1,NULL);
+	/* Create a task2 */
+	xTaskCreate(task_2,
+		    (signed portCHAR *) "Task 2 ",
+		    512/* stack size */,NULL,tskIDLE_PRIORITY + 1,NULL);
 
 	/* Start running the tasks. */
 	vTaskStartScheduler();
